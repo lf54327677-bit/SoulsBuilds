@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090908">
+<meta name="description" content="SoulsBuilds: builds, armas, guias e estratégias para Elden Ring e outros jogos Soulslike.">
+<title>SoulsBuilds — Domine os Soulslike</title>
+<style>
+:root{--bg:#090908;--panel:#12120f;--gold:#d9ad58;--light:#f3e7ca;--muted:#aaa597;--line:#383020}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--light);font-family:Georgia,'Times New Roman',serif}
+button,input{font:inherit}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:10;background:#090908f5;border-bottom:1px solid var(--line)}
+nav{max-width:1200px;margin:auto;padding:17px 22px;display:flex;align-items:center;gap:25px}
+.logo{font-size:25px;color:var(--gold);font-weight:bold;letter-spacing:2px;white-space:nowrap}
+.logo span{color:#fff0cf}
+.links{display:flex;gap:21px;margin-left:auto}
+.links a{font-size:14px;color:#d2c9b6}
+.links a:hover{color:var(--gold)}
+.hero{min-height:440px;display:flex;align-items:center;position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(ellipse at 78% 48%,#8d672b48,transparent 33%),radial-gradient(ellipse at 83% 15%,#d5a64a30,transparent 28%),linear-gradient(100deg,#090908 20%,#17140d 64%,#282012)}
+.hero:after{content:"✦";position:absolute;right:10%;top:3%;font-size:300px;color:#c99a4230;text-shadow:0 0 100px #d9ad58;pointer-events:none}
+.hero-inner{max-width:1200px;width:100%;margin:auto;padding:65px 24px;position:relative;z-index:1}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:4px;text-transform:uppercase}
+h1{font-size:clamp(45px,8vw,83px);line-height:.98;margin:20px 0;color:#f4dfad;font-weight:normal}
+.hero p{color:#d0c7b6;max-width:530px;font-size:17px;line-height:1.7}
+.btn{display:inline-block;background:var(--gold);color:#171107;padding:14px 23px;border:1px solid var(--gold);font-weight:bold;cursor:pointer;margin-top:15px}
+.btn:hover{background:#f1d28e}
+.btn.secondary{background:transparent;color:var(--gold)}
+.wrap{max-width:1200px;margin:auto;padding:38px 22px}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+h2{font-size:26px;font-weight:normal;margin:0;color:var(--gold)}
+.section-head small{color:var(--muted)}
+.features{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--panel)}
+.feature{padding:22px 18px;border-right:1px solid var(--line)}
+.feature:last-child{border:0}
+.feature b{display:block;margin:8px 0}
+.feature p{font-size:13px;color:var(--muted);line-height:1.5;margin:0}
+.symbol{font-size:28px;color:var(--gold)}
+.searchbar{display:flex;gap:10px;margin:20px 0;flex-wrap:wrap}
+.searchbar input{flex:1;min-width:200px;background:#14130f;color:white;border:1px solid var(--line);padding:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:23px}
+.filter{border:1px solid var(--line);background:#11110e;color:#cfc5b0;padding:9px 14px;cursor:pointer}
+.filter.active,.filter:hover{background:#d9ad58;color:#171107;border-color:var(--gold)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{background:var(--panel);border:1px solid var(--line);overflow:hidden;transition:transform .2s,border-color .2s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold)}
+.art{height:145px;display:flex;align-items:center;justify-content:center;font-size:68px;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#725126 0,#2b2113 42%,#11110e 78%)}
+.art.blue{background:radial-gradient(ellipse at center,#244a65,#131a20 70%)}
+.art.red{background:radial-gradient(ellipse at center,#743b25,#20130f 70%)}
+.art.purple{background:radial-gradient(ellipse at center,#49335e,#17121d 70%)}
+.art.green{background:radial-gradient(ellipse at center,#34533a,#121a13 70%)}
+.art:after{content:"";position:absolute;inset:0;border-bottom:1px solid #d9ad5840;background:linear-gradient(0deg,#090908b0,transparent)}
+.card-content{padding:18px}
+.tag{font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.card h3{font-size:20px;font-weight:normal;margin:9px 0}
+.card p{font-size:13px;line-height:1.6;color:var(--muted);min-height:40px}
+.stats{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0}
+.stats span{font-size:11px;padding:6px 8px;border:1px solid var(--line);color:#d8c59f}
+.card button{width:100%;padding:10px;background:transparent;border:1px solid var(--line);color:var(--gold);cursor:pointer}
+.card button:hover{background:#282012}
+.games{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.game{background:linear-gradient(145deg,#201b12,#10100d);border:1px solid var(--line);padding:20px 12px;text-align:center;cursor:pointer}
+.game:hover{border-color:var(--gold)}
+.game .symbol{font-size:30px}
+.game h3{font-size:15px;font-weight:normal;margin:10px 0 0}
+.empty{display:none;color:var(--muted);padding:28px;text-align:center;border:1px solid var(--line)}
+footer{border-top:1px solid var(--line);padding:27px 22px;color:var(--muted);font-size:12px;text-align:center;line-height:1.8}
+footer strong{color:var(--gold)}
+.modal{display:none;position:fixed;inset:0;z-index:30;background:#000d;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-box{max-width:540px;width:100%;background:#12120f;border:1px solid var(--gold);padding:25px;max-height:85vh;overflow:auto}
+.modal-box h2{margin-bottom:14px}
+.modal-box p{line-height:1.7;color:#c9c0ad}
+.close{float:right;background:none;border:1px solid var(--line);color:white;padding:6px 10px;cursor:pointer}
+@media(max-width:760px){nav{flex-wrap:wrap;gap:12px}.links{order:2;width:100%;overflow:auto;margin:0;padding:7px 0}.links a{white-space:nowrap}.cards{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.feature:nth-child(2){border-right:0}.feature:nth-child(-n+2){border-bottom:1px solid var(--line)}.games{grid-template-columns:repeat(2,1fr)}.hero{min-height:370px}.hero-inner{padding:45px 22px}}
+@media(max-width:440px){.cards{grid-template-columns:1fr}.art{height:170px}.logo{font-size:22px}.section-head{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<a class="logo" href="#">⚔ SOULS<span>BUILDS</span></a>
+<div class="links">
+<a href="#inicio">Início</a><a href="#builds">Builds</a><a href="#jogos">Jogos</a><a href="#guias">Guias</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+<div class="hero-inner">
+<div class="eyebrow">⚔ Builds · Armas · Guias · Soulslike</div>
+<h1>FORJE SEU<br>DESTINO.</h1>
+<p>Descubra builds, explore armas lendárias e prepare sua próxima jornada pelos mundos mais desafiadores dos Soulslike.</p>
+<a class="btn" href="#builds">EXPLORAR BUILDS &nbsp; →</a>
+<a class="btn secondary" href="#jogos">CONHECER OS JOGOS</a>
+</div>
+</section>
+
+<div class="wrap">
+<div class="features">
+<div class="feature"><div class="symbol">⚔</div><b>Builds detalhadas</b><p>Atributos, equipamentos e estilos de combate.</p></div>
+<div class="feature"><div class="symbol">♜</div><b>Armas e itens</b><p>Conheça equipamentos e suas possibilidades.</p></div>
+<div class="feature"><div class="symbol">▤</div><b>Guias de jornada</b><p>Dicas de progressão, chefes e exploração.</p></div>
+<div class="feature"><div class="symbol">✧</div><b>Vários universos</b><p>Um lugar para diferentes jogos Soulslike.</p></div>
+</div>
+</div>
+
+<section class="wrap" id="builds">
+<div class="section-head"><h2>✦ Biblioteca de builds</h2><small>Encontre seu estilo de combate</small></div>
+<div class="searchbar">
+<input id="search" type="search" placeholder="Buscar build, atributo ou estilo...">
+</div>
+<div class="filters">
+<button class="filter active" data-filter="Todas">Todas</button>
+<button class="filter" data-filter="Força">Força</button>
+<button class="filter" data-filter="Destreza">Destreza</button>
+<button class="filter" data-filter="Magia">Magia</button>
+<button class="filter" data-filter="Sangramento">Sangramento</button>
+<button class="filter" data-filter="Fé">Fé</button>
+</div>
+<div class="cards" id="build-list">
+<article class="card" data-type="Sangramento Destreza" data-search="sangramento rivers of blood katana elden ring destreza">
+<div class="art red">🗡️</div><div class="card-content"><span class="tag">Elden Ring · Build</span><h3>Lâminas de Sangue</h3><p>Uma ideia de build focada em agilidade e acúmulo de sangramento.</p><div class="stats"><span>Destreza</span><span>Sangramento</span><span>Combate rápido</span></div><button data-detail="blood">Ver detalhes →</button></div></article>
+<article class="card" data-type="Magia Fé" data-search="mago magia inteligência fe feitiços elden ring">
+<div class="art blue">✧</div><div class="card-content"><span class="tag">Elden Ring · Build</span><h3>Feiticeiro das Estrelas</h3><p>Uma ideia para quem prefere feitiços e ataques à distância.</p><div class="stats"><span>Inteligência</span><span>Magia</span><span>Distância</span></div><button data-detail="mage">Ver detalhes →</button></div></article>
+<article class="card" data-type="Força" data-search="força colossal espada pesada tanque elden ring">
+<div class="art">♜</div><div class="card-content"><span class="tag">Elden Ring · Build</span><h3>Guerreiro Colossal</h3><p>Uma proposta de combate com armas pesadas e golpes poderosos.</p><div class="stats"><span>Força</span><span>Vigor</span><span>Armas pesadas</span></div><button data-detail="strength">Ver detalhes →</button></div></article>
+<article class="card" data-type="Destreza" data-search="destreza samurai katana combate rápido elden ring">
+<div class="art green">⚔</div><div class="card-content"><span class="tag">Elden Ring · Build</span><h3>Samurai Errante</h3><p>Uma proposta de combate ágil com foco em ataques precisos.</p><div class="stats"><span>Destreza</span><span>Mobilidade</span><span>Katana</span></div><button data-detail="samurai">Ver detalhes →</button></div></article>
+<article class="card" data-type="Fé" data-search="fé encantamentos relâmpago fogo paladino elden ring">
+<div class="art">☼</div><div class="card-content"><span class="tag">Elden Ring · Build</span><h3>Paladino Dourado</h3><p>Uma ideia híbrida que combina combate corpo a corpo e encantamentos.</p><div class="stats"><span>Fé</span><span>Força</span><span>Encantamentos</span></div><button data-detail="faith">Ver detalhes →</button></div></article>
+<article class="card" data-type="Força Destreza" data-search="qualidade força destreza espada escudo equilibrada elden ring">
+<div class="art purple">🛡</div><div class="card-content"><span class="tag">Elden Ring · Build</span><h3>Cavaleiro Equilibrado</h3><p>Uma ideia versátil para experimentar armas e estilos diferentes.</p><div class="stats"><span>Força</span><span>Destreza</span><span>Versátil</span></div><button data-detail="knight">Ver detalhes →</button></div></article>
+</div>
+<div class="empty" id="empty">Nenhuma build encontrada. Tente outra busca.</div>
+<p style="color:var(--muted);font-size:12px;line-height:1.6">As builds acima são exemplos iniciais de categorias. Os atributos, equipamentos e valores exatos serão detalhados e verificados nas páginas individuais.</p>
+</section>
+
+<section class="wrap" id="jogos">
+<div class="section-head"><h2>✦ Explore os universos</h2></div>
+<div class="games">
+<a class="game" href="#builds" data-game="Elden Ring"><div class="symbol">☼</div><h3>Elden Ring</h3></a>
+<a class="game" href="#builds" data-game="Dark Souls"><div class="symbol">🔥</div><h3>Dark Souls</h3></a>
+<a class="game" href="#builds" data-game="Dark Souls II"><div class="symbol">♜</div><h3>Dark Souls II</h3></a>
+<a class="game" href="#builds" data-game="Dark Souls III"><div class="symbol">⚔</div><h3>Dark Souls III</h3></a>
+<a class="game" href="#builds" data-game="Bloodborne"><div class="symbol">🌙</div><h3>Bloodborne</h3></a>
+<a class="game" href="#builds" data-game="Sekiro"><div class="symbol">刀</div><h3>Sekiro</h3></a>
+<a class="game" href="#builds" data-game="Lies of P"><div class="symbol">♙</div><h3>Lies of P</h3></a>
+<a class="game" href="#guias"><div class="symbol">＋</div><h3>Mais jogos</h3></a>
+</div>
+</section>
+
+<section class="wrap" id="guias">
+<div class="section-head"><h2>✦ Conhecimento é poder</h2></div>
+<div class="cards">
+<article class="card"><div class="art blue">📜</div><div class="card-content"><span class="tag">Guias para iniciantes</span><h3>Comece sua jornada</h3><p>Entenda atributos, equipamentos, melhorias e progressão.</p><button data-detail="beginner">Explorar guia →</button></div></article>
+<article class="card"><div class="art red">🐉</div><div class="card-content"><span class="tag">Estratégias</span><h3>Preparação para chefes</h3><p>Aprenda a observar padrões e planejar seu equipamento.</p><button data-detail="boss">Explorar guia →</button></div></article>
+<article class="card"><div class="art">⚒</div><div class="card-content"><span class="tag">Equipamentos</span><h3>Armas e melhorias</h3><p>Descubra como comparar armas e construir seu estilo.</p><button data-detail="weapons">Explorar guia →</button></div></article>
+</div>
+</section>
+</main>
+
+<footer><strong>⚔ SOULSBUILDS</strong><br>Um projeto independente feito por fãs de Soulslike.<br>Todos os nomes de jogos e marcas pertencem aos seus respectivos proprietários.<br><span id="year"></span> · Mais conhecimento. Novos desafios.</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+<div class="modal-box"><button class="close" id="close">Fechar ✕</button><h2 id="modal-title">Detalhes</h2><div id="modal-text"></div></div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('#build-list .card')];
+const filters = [...document.querySelectorAll('.filter')];
+let selected = 'Todas';
+function update(){
+ const term = search.value.toLocaleLowerCase('pt-BR');
+ let count = 0;
+ cards.forEach(card=>{
+  const matchesType = selected === 'Todas' || card.dataset.type.includes(selected);
+  const matchesText = (card.innerText + ' ' + card.dataset.search).toLocaleLowerCase('pt-BR').includes(term);
+  card.style.display = matchesType && matchesText ? '' : 'none';
+  if(matchesType && matchesText) count++;
+ });
+ document.getElementById('empty').style.display = count ? 'none' : 'block';
+}
+search.addEventListener('input',update);
+filters.forEach(btn=>btn.addEventListener('click',()=>{
+ selected=btn.dataset.filter;
+ filters.forEach(b=>b.classList.toggle('active',b===btn));
+ update();
+}));
+document.querySelectorAll('[data-game]').forEach(game=>game.addEventListener('click',()=>{
+ search.value=game.dataset.game === 'Elden Ring' ? '' : game.dataset.game;
+ selected='Todas';
+ filters.forEach(b=>b.classList.toggle('active',b.dataset.filter==='Todas'));
+ update();
+}));
+const details={
+ blood:['Lâminas de Sangue','Categoria inicial: Destreza e sangramento. Uma página completa deverá especificar atributos por nível, arma, cinzas de guerra, talismãs e opções alternativas. Os requisitos e efeitos dos equipamentos precisam ser conferidos para a versão do jogo.'],
+ mage:['Feiticeiro das Estrelas','Categoria inicial: Inteligência e feitiçaria. A futura página incluirá distribuição de atributos, cajado, feitiços, talismãs e opções para diferentes fases do jogo.'],
+ strength:['Guerreiro Colossal','Categoria inicial: Força e armas pesadas. A futura página explicará atributos, requisitos de equipamento, melhorias e estratégias de combate.'],
+ samurai:['Samurai Errante','Categoria inicial: Destreza e combate ágil. A futura página incluirá alternativas de armas, atributos, habilidades e sugestões de equipamento.'],
+ faith:['Paladino Dourado','Categoria inicial: Fé e combate corpo a corpo. A futura página abordará encantamentos, armas compatíveis, atributos e opções de defesa.'],
+ knight:['Cavaleiro Equilibrado','Categoria inicial: Força e Destreza. A futura página comparará armas e explicará como distribuir os atributos para o estilo escolhido.'],
+ beginner:['Guia para iniciantes','Vamos organizar conceitos essenciais: atributos, classes iniciais, frascos, melhorias de armas, exploração e como escolher um estilo de combate.'],
+ boss:['Estratégias para chefes','Cada guia de chefe poderá reunir localização, ataques importantes, fraquezas documentadas, preparação e estratégias alternativas.'],
+ weapons:['Armas e melhorias','Vamos criar fichas com requisitos, tipos de dano, atributos relevantes, habilidades, localização e materiais de melhoria.']
+};
+const modal=document.getElementById('modal');
+document.querySelectorAll('[data-detail]').forEach(btn=>btn.addEventListener('click',()=>{
+ const info=details[btn.dataset.detail];
+ document.getElementById('modal-title').textContent=info[0];
+ document.getElementById('modal-text').innerHTML='<p>'+info[1]+'</p><p style="color:#d9ad58">SoulsBuilds · Guia em desenvolvimento</p>';
+ modal.classList.add('show');
+}));
+document.getElementById('close').addEventListener('click',()=>modal.classList.remove('show'));
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('show')});
+</script>
+</body>
+</html>
